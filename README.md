@@ -14,3 +14,7 @@ npm i
 - Setup .env file from .env.inc
 
 - Update config.json file if needed
+
+## License
+
+This software is distributed under the GNU GPLv3 License.
