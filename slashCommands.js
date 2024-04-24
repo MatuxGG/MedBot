@@ -6,7 +6,7 @@ dotenv.config()
 
 const commands = [];
 
-const clientId = process.env.CLIENT_ID;
+const clientId = process.env.ENV === "PROD" ? process.env.BOT_PROD_ID : process.env.BOT_DEV_ID;
 
 const commandDirs = fs.readdirSync('./commands');
 

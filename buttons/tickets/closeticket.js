@@ -3,7 +3,6 @@ const { trans } = require('../../utils/Translator.js');
 const { Board } = require('../../models/index');
 const { ChannelType } = require('discord.js');
 const {Ticket} = require("../../models");
-const { BOT_PROD_ID, BOT_DEV_ID } = require('../../config');
 
 module.exports = {
     name: 'closeticket',
@@ -40,7 +39,7 @@ module.exports = {
                         allow: ['ViewChannel', 'SendMessages', 'ReadMessageHistory']
                     },
                     {
-                        id: process.env.ENV === 'PROD' ? BOT_PROD_ID : BOT_DEV_ID,
+                        id: process.env.ENV === 'PROD' ? process.env.BOT_PROD_ID : process.env.BOT_DEV_ID,
                         allow: ['ViewChannel', 'SendMessages', 'ReadMessageHistory', 'ManageMessages', 'ManageChannels']
                     }
                 ])

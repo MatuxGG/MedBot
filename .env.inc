@@ -1,8 +1,9 @@
 #ENV=PROD
 ENV=DEV
-PROD_TOKEN=discord_prod_token # Medbot
-DEV_TOKEN=discord_dev_token # MedBeta
-DATABASE_URI=mongodb://login:password@localhost:27017/admin
-CLIENT_ID=client_id
-DEV_GUILD=dev_guild_id
-LEADERBOARD_API_TOKEN=leaderboard_api_token
+PROD_TOKEN=discord_prod_token # Medbot token
+DEV_TOKEN=discord_dev_token # MedBeta token
+BOT_PROD_ID=793905604631986197 # Medbot ID
+BOT_DEV_ID=796428644783489024 # Medbeta ID
+DATABASE_URI=mongodb://login:password@localhost:27017/admin # mongodb database
+DEV_GUILD=dev_guild_id # Guild for dev mode
+LEADERBOARD_API_TOKEN=leaderboard_api_token # Good Loss API Token

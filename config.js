@@ -1,7 +1,5 @@
 const config = {
-    VERSION: "1.0.2",
-    BOT_PROD_ID: "793905604631986197",
-    BOT_DEV_ID: '796428644783489024',
+    VERSION: "1.0.3",
     PLAYER_INFO_API_URL: 'https://goodloss.fr/api/challenger/playerInfos',
     LEADERBOARD_API_URL: 'https://goodloss.fr/api/challenger/leaderboard',
     EMOJIS: {

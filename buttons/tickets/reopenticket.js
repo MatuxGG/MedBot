@@ -2,7 +2,6 @@ const { EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("
 const { trans } = require('../../utils/Translator.js');
 const { Board, Ticket } = require('../../models/index');
 const { ChannelType } = require('discord.js');
-const { BOT_PROD_ID, BOT_DEV_ID } = require('../../config');
 
 module.exports = {
     name: 'reopenticket',
@@ -46,7 +45,7 @@ module.exports = {
                     allow: ['ViewChannel', 'SendMessages', 'ReadMessageHistory']
                 },
                 {
-                    id: process.env.ENV === 'PROD' ? BOT_PROD_ID : BOT_DEV_ID,
+                    id: process.env.ENV === 'PROD' ? process.env.BOT_PROD_ID : process.env.BOT_DEV_ID,
                     allow: ['ViewChannel', 'SendMessages', 'ReadMessageHistory', 'ManageMessages', 'ManageChannels']
                 }
             ])
