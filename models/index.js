@@ -3,5 +3,7 @@ module.exports = {
     ChanToClean: require('./chanToClean'),
     WeekCalendar: require('./weekCalendar'),
     Board: require('./board'),
-    Ticket: require('./ticket')
+    Ticket: require('./ticket'),
+    ChallengerRank: require('./challengerRank'),
+    ChallengerBoard: require('./challengerBoard'),
 };

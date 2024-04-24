@@ -52,6 +52,10 @@
     "no_transcript_channel": "Pas de salon enregistré pour les transcripts. Merci d'utiliser /settranscriptchannel !",
     "ticket_saved_by": "Transcript sauvegardé par %SENDER%",
     "log_channel_select": "Merci de sélectionner un salon pour les logs",
-    "log_channel_saved": "Salon pour les logs sauvegardé !"
+    "log_channel_saved": "Salon pour les logs sauvegardé !",
+    "leaderboard": "Classement",
+    "leaderboard_sent": "Le message du classement a été envoyé.",
+    "Challenger Rank": "Rang Challenger",
+    "Challenger status": "Statut Challenger"
 }
   

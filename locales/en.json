@@ -52,5 +52,9 @@
     "no_transcript_channel": "No transcript channel set. Please use /settranscriptchannel!",
     "ticket_saved_by": "Transcript saved by %SENDER%",
     "log_channel_select": "Please, select a logs channel",
-    "log_channel_saved": "Logs channel saved!"
+    "log_channel_saved": "Logs channel saved!",
+    "leaderboard": "Leaderboard",
+    "leaderboard_sent": "The leaderboard message has been sent.",
+    "Challenger Rank": "Challenger Rank",
+    "Challenger status": "Challenger status"
 }

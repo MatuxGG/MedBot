@@ -4,6 +4,9 @@ const dotenv = require('dotenv');
 dotenv.config()
 const { trans } = require('../../utils/Translator.js');
 const { VERSION } = require('../../config');
+const { Guild } = require('../../models/index')
+const {getPlayerData} = require("../../utils/challenger/leaderboardUtils");
+const {ChallengerRank} = require("../../models");
 
 module.exports = {
     name: 'ready',
@@ -99,6 +102,45 @@ module.exports = {
 
                 });
             });
+
+            Guild.find({challengerSetRoles: true}, async function (err, guilds) {
+                console.log('starting')
+                for (const guildObj of guilds) {
+                    let guild = client.guilds.cache.get(guildObj.id);
+                    if (guild) {
+                        ChallengerRank.find({guildId: guildObj.id}, async function (err, ranks) {
+                            if (err) {
+                                console.log(`Challenger rank error: ${err}`);
+                                return;
+                            }
+                            guild.members.fetch().then(async members => {
+                                let memberIds = members.map(member => member.user.id);
+                                let collected = await getPlayerData(memberIds);
+                                let data = [];
+                                for (let id in collected) {
+                                    data.push(collected[id]);
+                                }
+                                for (let i = 0; i < data.length; i++) {
+                                    let userData = data[i];
+                                    if(userData !== null){
+                                        let member = await client.guilds.cache.get(guildObj.id).members.fetch(userData.discordId);
+                                        if(member){
+                                            for (let rank of ranks) {
+                                                if (rank.id === userData.rankId) {
+                                                    console.log("oui");
+                                                    member.roles.add(rank.roleId);
+                                                } else {
+                                                    member.roles.remove(rank.roleId);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                        })
+                    }
+                }
+            })
 
         }, 60 * 1000);
 
