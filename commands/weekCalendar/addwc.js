@@ -350,7 +350,7 @@ module.exports = {
         WeekCalendar.countDocuments({id: interaction.channel.id}, async function (err, count){ 
             const obj = await trans(guildId, "Weekly Calendar");
             if(count<=0){
-                const createChan = new WeekCalendar({ id: interaction.channel.id, hours: newHours, minutes: newMinutes, day: newDay, title: newTitle });
+                const createChan = new WeekCalendar({ id: interaction.channel.id, hours: newHours, minutes: newMinutes, day: newDay, title: newTitle, guildId:guildId });
                 createChan.save().then(c => console.log(`New channel for calendar : ${c.id}`));
                 const reply = await trans(guildId, "added_success", {obj: obj})
                 interaction.reply({content: reply, ephemereal: true}); 

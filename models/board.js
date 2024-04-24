@@ -7,6 +7,7 @@ const guildSchema = mongoose.Schema ({
     ticketContent: String,
     roleId: String,
     channelName: String,
+    guildId: String,
 });
 
 module.exports = mongoose.model('Board', guildSchema);

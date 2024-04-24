@@ -25,7 +25,7 @@ module.exports = {
         interaction.reply({ content: await trans(guildId, "leaderboard_sent"), ephemeral: true });
 
         interaction.channel.send({ embeds: [embed] }).then(msg => {
-            const createBoard = new ChallengerBoard({ id: msg.id, channelId: msg.channel.id });
+            const createBoard = new ChallengerBoard({ id: msg.id, channelId: msg.channel.id, guildId: guildId });
             createBoard.save().then(g => console.log(`New challenger board : ${g.id}`));
         });
 

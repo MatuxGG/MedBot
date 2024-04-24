@@ -6,6 +6,7 @@ const guildSchema = mongoose.Schema ({
     minutes: Number,
     day: Number,
     title: String,
+    guildId: String,
 });
 
 module.exports = mongoose.model('WeekCalendar', guildSchema);

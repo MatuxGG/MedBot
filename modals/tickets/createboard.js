@@ -54,7 +54,7 @@ module.exports = {
                             components: [row]
                         })
                             .then(message => {
-                                let createBoard = new Board({ id: category.id, nextId: 0, ticketTitle: ticketTitle, ticketContent: ticketContent, roleId: roleId });
+                                let createBoard = new Board({ id: category.id, nextId: 0, ticketTitle: ticketTitle, ticketContent: ticketContent, roleId: roleId, guildId: guildId });
                                 createBoard.save().then(b => console.log(`New board : ${b.id}`));
 
                                 interaction.reply({ content: boardCreatedMessage, ephemeral: true });

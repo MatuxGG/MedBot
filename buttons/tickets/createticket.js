@@ -81,7 +81,7 @@ module.exports = {
                             embeds: [embed],
                             components: [row],
                         }).then(message => {
-                            let createTicket = new Ticket({ id: message.id, channelId: channel.id, ownerId: interaction.user.id, viewerId: board.roleId, state: 'open', startDate: Date.now(), formattedId: formattedId });
+                            let createTicket = new Ticket({ id: message.id, channelId: channel.id, ownerId: interaction.user.id, viewerId: board.roleId, state: 'open', startDate: Date.now(), formattedId: formattedId, guildId: guildId });
                             createTicket.save().then(t => console.log(`New ticket : ${t.id}`));
                         });
 

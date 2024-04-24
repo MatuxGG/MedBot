@@ -305,7 +305,7 @@ module.exports = {
             const guildId = interaction.channel.guildId;
             const obj = await trans(guildId, "Channel to clean");
             if(count<=0){
-                const createChan = new ChanToClean({ id: interaction.channel.id, hours: newHours, minutes: newMinutes });
+                const createChan = new ChanToClean({ id: interaction.channel.id, hours: newHours, minutes: newMinutes, guildId: guildId });
                 createChan.save().then(c => console.log(`New channel to clean : ${c.id}`));
                 const reply = await trans(guildId, 'added_success', { obj: obj } );
                 interaction.reply({content:  reply, ephemereal: true}); 

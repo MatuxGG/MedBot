@@ -8,6 +8,7 @@ const guildSchema = mongoose.Schema ({
     viewerId: String,
     state: String,
     startDate: Date,
+    guildId: String,
 });
 
 module.exports = mongoose.model('Ticket', guildSchema);
