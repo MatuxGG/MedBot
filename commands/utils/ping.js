@@ -28,7 +28,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setTitle('Pong !')
             //.setImage(client.user.displayAvatarURL())
-            .setURL('https://goodloss.fr')
+            .setURL('https://'+process.env.HOST_URL)
             .setThumbnail(client.user.displayAvatarURL())
             .addFields(
                 {name : latency_title, value : latency_message, inline : false},

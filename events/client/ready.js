@@ -104,7 +104,6 @@ module.exports = {
             });
 
             Guild.find({challengerSetRoles: true}, async function (err, guilds) {
-                console.log('starting')
                 for (const guildObj of guilds) {
                     let guild = client.guilds.cache.get(guildObj.id);
                     if (guild) {
@@ -127,7 +126,6 @@ module.exports = {
                                         if(member){
                                             for (let rank of ranks) {
                                                 if (rank.id === userData.rankId) {
-                                                    console.log("oui");
                                                     member.roles.add(rank.roleId);
                                                 } else {
                                                     member.roles.remove(rank.roleId);
@@ -144,9 +142,8 @@ module.exports = {
 
         }, 60 * 1000);
 
-        const presenceText = 'goodloss.fr';
         client.user.setStatus('online');
-        client.user.setActivity(presenceText, { type : ActivityType.custom });
+        client.user.setActivity(process.env.HOST_URL, { type : ActivityType.custom });
 
         if (process.env.ENV === "PROD") {
             await client.application.commands.set(client.commands.map(command => command));

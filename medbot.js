@@ -60,20 +60,6 @@ mongoose.connection.on('error', function(err) {
     console.log("Database connection error:", err);
 });
 
-// MariaDB connect
-
-// const db = createConnection({
-//   host: 'goodloss.fr',
-//   user: 'Matux',
-//   password: 'espace',
-//   database: 'goodloss',
-// });
-
-// db.connect(function(err) {
-//   if (err) throw err;
-//   console.log("Connected to Good Loss database");
-// });
-
 loadTranslations('en');
 loadTranslations('fr');
 

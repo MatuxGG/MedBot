@@ -32,7 +32,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setTitle(title)
                     //.setImage(client.user.displayAvatarURL())
-                    .setURL('https://goodloss.fr')
+                    .setURL('https://'+process.env.HOST_URL)
                     .setThumbnail(flagUrl)
                     .addFields(
                         {name : title, value : lgDisplay, inline : false}

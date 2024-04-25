@@ -1,5 +1,5 @@
 const config = {
-    VERSION: "1.0.3",
+    VERSION: "1.0.4",
     PLAYER_INFO_API_URL: 'https://goodloss.fr/api/challenger/playerInfos',
     LEADERBOARD_API_URL: 'https://goodloss.fr/api/challenger/leaderboard',
     EMOJIS: {

@@ -7,3 +7,4 @@ BOT_DEV_ID=796428644783489024 # Medbeta ID
 DATABASE_URI=mongodb://login:password@localhost:27017/admin # mongodb database
 DEV_GUILD=dev_guild_id # Guild for dev mode
 LEADERBOARD_API_TOKEN=leaderboard_api_token # Good Loss API Token
+HOST_URL=host_url # goodloss.fr

@@ -19,7 +19,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setTitle('Version')
             //.setImage(client.user.displayAvatarURL())
-            .setURL('https://goodloss.fr')
+            .setURL('https://'+process.env.HOST_URL)
             .setThumbnail(client.user.displayAvatarURL())
             .addFields(
                 {name : versionTrans, value : `${version}`, inline : false},
