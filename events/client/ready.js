@@ -3,10 +3,10 @@ const { EmbedBuilder, ActivityType } = require("discord.js");
 const dotenv = require('dotenv');
 dotenv.config()
 const { trans } = require('../../utils/Translator.js');
-const { VERSION } = require('../../config');
+const { VERSION, EMOJIS} = require('../../config');
 const { Guild } = require('../../models/index')
-const {getPlayerData} = require("../../utils/challenger/leaderboardUtils");
-const {ChallengerRank} = require("../../models");
+const {getPlayerData, getLeaderboardData} = require("../../utils/challenger/leaderboardUtils");
+const {ChallengerRank, ChallengerBoard} = require("../../models");
 
 module.exports = {
     name: 'ready',
@@ -18,6 +18,8 @@ module.exports = {
             const date = now.getDate();
             const hours = now.getUTCHours();
             const minutes = now.getUTCMinutes();
+
+            // ChanToClean service
             ChanToClean.find({hours: hours, minutes: minutes}, function (err, ctcs) {
                 ctcs.forEach(ctc => {
                     console.log(`Cleaning channel ${ctc.id}`)
@@ -32,6 +34,8 @@ module.exports = {
                     });
                 });
             });
+
+            // WeekCalendar Service
             WeekCalendar.find({hours: hours, minutes: minutes, day: day}, async function (err, ctwc) {
                 ctwc.forEach(async (ctc) => {
                     console.log(`Sending calendar in channel ${ctc.id}`)
@@ -103,6 +107,7 @@ module.exports = {
                 });
             });
 
+            // Challenger automatic roles service
             Guild.find({challengerSetRoles: true}, async function (err, guilds) {
                 for (const guildObj of guilds) {
                     let guild = client.guilds.cache.get(guildObj.id);
@@ -140,7 +145,41 @@ module.exports = {
                 }
             })
 
+            // Leaderboard updates service
+            Guild.find({}, async function (err, guilds) {
+                const data = await getLeaderboardData(0);
+                for (const guildObj of guilds) {
+                    let guild = client.guilds.cache.get(guildObj.id);
+                    if (guild) {
+                        ChallengerBoard.find({guildId: guildObj.id}, async function (err, boards) {
+                            if (err) {
+                                console.log(`Challenger board error: ${err}`);
+                                return;
+                            }
+                            for (const board of boards) {
+                                const embed = new EmbedBuilder()
+                                    .setTitle(await trans(board.guildId, 'leaderboard'))
+                                    .setImage('https://orianagames.com/build/images/Challenger.ico')
+                                    .setURL('https://orianagames.com/challenger/')
+                                    .setDescription(
+                                        data.map((currElement, index) => "**__#" + (parseInt(index) + 1) + "__** [" + EMOJIS[data[index].rankId] + "**" + data[index].rankName + "** `(" + data[index].rankPercent + "%)`] - **[" + data[index].user + "](https://orianagames.com/player/" + data[index].user + ")**").join("\n")
+                                    )
+                                let channel = client.channels.cache.get(board.channelId);
+                                if (channel) {
+                                    channel.messages.fetch(board.id).then(async msg => {
+                                        msg.edit({ embeds: [embed]});
+                                    })
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+
         }, 60 * 1000);
+
+
+        // Bot start
 
         client.user.setStatus('online');
         client.user.setActivity(process.env.HOST_URL, { type : ActivityType.custom });
