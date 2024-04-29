@@ -130,11 +130,13 @@ module.exports = {
                                         let member = await client.guilds.cache.get(guildObj.id).members.fetch(userData.discordId);
                                         if(member){
                                             for (let rank of ranks) {
-                                                if (rank.id === userData.rankId) {
+                                                if (rank.id === userData.rankId && !member.roles.cache.find(r => r.id === rank.roleId)) {
+						    console.log("add role "+rank.roleId+" for user "+member.displayName);
                                                     member.roles.add(rank.roleId);
-                                                } else {
+                                                } else if (rank.id !== userData.rankId && member.roles.cache.find(r => r.id === rank.roleId)) {
+						    console.log("remove role "+rank.roleId+" for user "+member.displayName);
                                                     member.roles.remove(rank.roleId);
-                                                }
+						}
                                             }
                                         }
                                     }
