@@ -180,6 +180,26 @@ module.exports = {
 
         }, 60 * 1000);
 
+        // Cron for channels names only twice per 10 minutes
+        setInterval(() => {
+            // MembersCount service
+            Guild.find({  }, async function (err, guilds) {
+                for (const guildObj of guilds) {
+                    if (guildObj.membersCountChannel !== null) {
+                        let guild = client.guilds.cache.get(guildObj.id);
+                        let membersText = await trans(guildObj.id, 'members');
+                        if (guild) {
+                            let membersCount = guild.members.cache.filter(member => !member.user.bot).size;
+                            let channel = guild.channels.cache.get(guildObj.membersCountChannel);
+                            if (channel) {
+                                channel.setName(`${membersCount} ${membersText}`);
+                                console.log(`Updating members count in ${channel.name} to ${membersCount} ${membersText}`);
+                            }
+                        }
+                    }
+                }
+            });
+        }, 5 * 60 * 1000);
 
         // Bot start
 

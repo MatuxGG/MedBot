@@ -56,5 +56,10 @@
     "leaderboard": "Leaderboard",
     "leaderboard_sent": "The leaderboard message has been sent.",
     "Challenger Rank": "Challenger Rank",
-    "Challenger status": "Challenger status"
+    "Challenger status": "Challenger status",
+    "count_channel_select": "Please, select a members count channel",
+    "no_voice_channel": "No voice channel",
+    "count_channel_removed": "Members count channel removed!",
+    "count_channel_saved": "Members count channel saved!",
+    "members": "members"
 }

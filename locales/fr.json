@@ -56,6 +56,11 @@
     "leaderboard": "Classement",
     "leaderboard_sent": "Le message du classement a été envoyé.",
     "Challenger Rank": "Rang Challenger",
-    "Challenger status": "Statut Challenger"
+    "Challenger status": "Statut Challenger",
+    "count_channel_select": "Merci de sélectionner un salon pour le compteur de membres",
+    "no_voice_channel": "Pas de salon vocal",
+    "count_channel_removed": "Salon pour le compteur de membres supprimé !",
+    "count_channel_saved": "Salon pour le compteur de membres sauvegardé !",
+    "members": "membres"
 }
   

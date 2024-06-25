@@ -6,6 +6,7 @@ const guildSchema = mongoose.Schema ({
     transcriptChannel: String,
     logChannel: {'type': String, 'default': '949340522718310400'},
     challengerSetRoles: {'type': Boolean, 'default': false},
+    membersCountChannel: String,
 });
 
 module.exports = mongoose.model('Guild', guildSchema);
