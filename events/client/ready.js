@@ -189,7 +189,7 @@ module.exports = {
                         let guild = client.guilds.cache.get(guildObj.id);
                         let membersText = await trans(guildObj.id, 'members');
                         if (guild) {
-                            let membersCount = guild.members.cache.size;
+                            let membersCount = guild.memberCount;
                             let channel = guild.channels.cache.get(guildObj.membersCountChannel);
                             if (channel) {
                                 channel.setName(`${membersCount} ${membersText}`);
