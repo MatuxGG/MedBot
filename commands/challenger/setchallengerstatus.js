@@ -46,7 +46,7 @@ module.exports = {
         Guild.findOneAndUpdate( { id: guildId }, {challengerSetRoles: newEnabled }, async function (err, guild) {
             const obj = await trans(guildId, "Challenger status");
             const reply = await trans(guildId, "updated_success", {obj: obj} );
-            interaction.reply({content: reply, ephemereal: true});
+            interaction.reply({content: reply, ephemeral: true});
         });
     }
 }

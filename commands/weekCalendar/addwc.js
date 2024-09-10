@@ -353,11 +353,11 @@ module.exports = {
                 const createChan = new WeekCalendar({ id: interaction.channel.id, hours: newHours, minutes: newMinutes, day: newDay, title: newTitle, guildId:guildId });
                 createChan.save().then(c => console.log(`New channel for calendar : ${c.id}`));
                 const reply = await trans(guildId, "added_success", {obj: obj})
-                interaction.reply({content: reply, ephemereal: true}); 
+                interaction.reply({content: reply, ephemeral: true});
             } else {
                 const reply = await trans(guildId, "updated_success", {obj: obj} );
                 WeekCalendar.findOneAndUpdate( { id: interaction.channel.id }, {hours: newHours, minutes: newMinutes, day: newDay, title: newTitle }, function (err, weekCalendar) {
-                    interaction.reply({content: reply, ephemereal: true}); 
+                    interaction.reply({content: reply, ephemeral: true});
                 });
             }
         }); 

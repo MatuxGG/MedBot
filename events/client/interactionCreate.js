@@ -12,7 +12,7 @@ module.exports = {
             }
 
             if (!interaction.member.permissions.has([command.permissions])){
-                return interaction.reply( { content: await trans(guildId, "cmd_no_perm") + ` (${command.permissions.join(', ')})`, ephemereal: true });
+                return interaction.reply( { content: await trans(guildId, "cmd_no_perm") + ` (${command.permissions.join(', ')})`, ephemeral: true });
             }
 
             command.runSlash(client, interaction);

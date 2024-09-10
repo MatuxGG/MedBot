@@ -14,7 +14,7 @@ module.exports = {
         const obj = await trans(guildId, "Weekly Calendar");
         const reply = await trans(guildId, "removed_success",{obj: obj} );
         WeekCalendar.findOneAndRemove( { id: interaction.channel.id }, function (err, weekCalendar) {
-            interaction.reply({ content: reply, ephemereal: true}); 
+            interaction.reply({ content: reply, ephemeral: true});
 	        console.log(`Removed channel for weekly calendar: ${interaction.channel.id}`);
         });
     }

@@ -31,13 +31,13 @@ module.exports = {
         const eventChoices = interaction.options.getString('event');
         if (eventChoices == 'guildMemberAdd') {
             client.emit('guildMemberAdd', interaction.member);
-            interaction.reply( { content: 'Event guildMemberAdd sent!', ephemereal: true }); 
+            interaction.reply( { content: 'Event guildMemberAdd sent!', ephemeral: true });
         } else if (eventChoices == 'guildCreate') {
             client.emit('guildCreate', interaction.guild);
-            interaction.reply({ content: 'Event guildCreate sent!', ephemereal: true }); 
+            interaction.reply({ content: 'Event guildCreate sent!', ephemeral: true });
         } else {
             client.emit('guildMemberRemove', interaction.member);
-            interaction.reply( { content: 'Event guildMemberRemove sent!', ephemereal: true }); 
+            interaction.reply( { content: 'Event guildMemberRemove sent!', ephemeral: true });
 
         }
     }

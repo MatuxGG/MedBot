@@ -15,7 +15,7 @@ module.exports = {
         const obj = await trans(guildId, "Channel to clean");
         const reply = await trans(guildId, 'removed_success', {obj: obj} );
         ChanToClean.findOneAndRemove( { id: interaction.channel.id }, function (err, chanToClean) {
-            interaction.reply({ content: reply, ephemereal: true}); 
+            interaction.reply({ content: reply, ephemeral: true});
 	        console.log(`Removed channel to clean : ${interaction.channel.id}`);
         });
     }

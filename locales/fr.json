@@ -61,6 +61,12 @@
     "no_voice_channel": "Pas de salon vocal",
     "count_channel_removed": "Salon pour le compteur de membres supprimé !",
     "count_channel_saved": "Salon pour le compteur de membres sauvegardé !",
-    "members": "membres"
+    "members": "membres",
+    "no_stream_board": "Pas de board de stream",
+    "streamer_select": "Merci de sélectionner un streamer",
+    "streamer_added": "Streamer ajouté ! Il apparaitra dans moins de 5 minutes.",
+    "streamers_title": "Streamers",
+    "active": "Actif",
+    "inactive": "Inactif"
 }
   

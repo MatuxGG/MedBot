@@ -17,7 +17,7 @@ module.exports = {
         }
 
         Guild.findOneAndUpdate( { id: interaction.guild.id }, { membersCountChannel: selectChannelId }, function (err, weekCalendar) {
-            interaction.reply({content: message, ephemereal: true});
+            interaction.reply({content: message, ephemeral: true});
         });
     }
 }

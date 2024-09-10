@@ -9,7 +9,7 @@ module.exports = {
         const message = await trans(guildId, 'transcript_channel_saved');
 
         Guild.findOneAndUpdate( { id: interaction.guild.id }, { transcriptChannel: selectChannelId }, function (err, weekCalendar) {
-            interaction.reply({content: message, ephemereal: true});
+            interaction.reply({content: message, ephemeral: true});
         });
     }
 }

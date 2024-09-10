@@ -6,7 +6,7 @@ const { trans } = require('../../utils/Translator.js');
 const { VERSION, EMOJIS} = require('../../config');
 const { Guild } = require('../../models/index')
 const {getPlayerData, getLeaderboardData} = require("../../utils/challenger/leaderboardUtils");
-const {ChallengerRank, ChallengerBoard} = require("../../models");
+const {ChallengerRank, ChallengerBoard, StreamBoard, StreamLine} = require("../../models");
 
 module.exports = {
     name: 'ready',
@@ -200,6 +200,51 @@ module.exports = {
                 }
             });
         }, 5 * 60 * 1000);
+
+        // Cron for stream boards only every 5 minutes
+        setInterval(async () => {
+            // MembersCount service
+
+            StreamBoard.find({}, async function (err, streamBoards) {
+                for (const streamBoard of streamBoards) {
+                    let guild = client.guilds.cache.get(streamBoard.guildId);
+                    if (guild) {
+                        let guildId = streamBoard.guildId;
+                        let actif = await trans(guildId, 'active');
+                        let inactif = await trans(guildId, 'inactive');
+                        let streamLines = await StreamLine.find({guildId: streamBoard.guildId, channelId: streamBoard.channelId});
+
+                        let desc = '';
+                        streamLines.forEach(streamLine => {
+                            // Récupère l'utilisateur
+                            let user = guild.members.cache.get(streamLine.userId);
+                            if (user && user.presence) {
+                                // Cherche si l'utilisateur est en train de streamer
+                                let isStreaming = user.presence.activities ? user.presence.activities.find(activity => activity.type === 'STREAMING') : null;
+                                let streamUrl = isStreaming ? isStreaming.url : '';
+                                desc += '- <@' + streamLine.userId + '>: ' + (isStreaming ? actif + ' (<' + streamUrl + '>)' : inactif) + '\n';
+                            } else {
+                                desc += '- <@' + streamLine.userId + '>: '+inactif+'\n';
+                            }
+                        });
+
+                        const embed = new EmbedBuilder()
+                            .setTitle(await trans(guildId, 'streamers_title'))
+
+                        if (desc !== '') {
+                            embed.setDescription(desc);
+                        }
+
+                        let channel = client.channels.cache.get(streamBoard.channelId);
+                        if (channel) {
+                            channel.messages.fetch(streamBoard.id).then(async msg => {
+                                msg.edit({embeds: [embed]});
+                            }).catch(console.error);
+                        }
+                    }
+                }
+            });
+        }, 5 * 1000);
 
         // Bot start
 
