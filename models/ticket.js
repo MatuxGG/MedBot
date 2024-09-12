@@ -9,6 +9,7 @@ const guildSchema = mongoose.Schema ({
     state: String,
     startDate: Date,
     guildId: String,
+    boardId: String,
 });
 
 module.exports = mongoose.model('Ticket', guildSchema);

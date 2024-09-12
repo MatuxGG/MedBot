@@ -222,7 +222,7 @@ module.exports = {
                                 // Cherche si l'utilisateur est en train de streamer
                                 let isStreaming = user.presence.activities ? user.presence.activities.find(activity => activity.type === 'STREAMING') : null;
                                 let streamUrl = isStreaming ? isStreaming.url : '';
-                                desc += '- <@' + streamLine.userId + '>: ' + (isStreaming ? actif + ' (<' + streamUrl + '>)' : inactif) + '\n';
+                                desc += '- <@' + streamLine.displayName + '>: ' + (isStreaming ? actif + ' (<' + streamUrl + '>)' : inactif) + '\n';
                             } else {
                                 desc += '- <@' + streamLine.userId + '>: '+inactif+'\n';
                             }

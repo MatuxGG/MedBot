@@ -299,7 +299,7 @@ module.exports = {
         if (newHours < 0) {
             newHours = newHours + 24;
         }
-        const newMinutes = interaction.options.getNumber('minutes');
+        const newMinutes = interaction.options.getNumber('minute');
         
         ChanToClean.countDocuments({id: interaction.channel.id}, async function (err, count){ 
             const guildId = interaction.channel.guildId;

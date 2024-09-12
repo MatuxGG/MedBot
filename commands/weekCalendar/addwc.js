@@ -337,8 +337,11 @@ module.exports = {
     ],
     runSlash: (client, interaction) => {
         let newTz = interaction.options.getNumber('timezone');
-        let newHours = interaction.options.getNumber('hours') - newTz;
-        let newMinutes = interaction.options.getNumber('minutes');
+        let newHours = interaction.options.getNumber('hour') - newTz;
+        if (newHours < 0) {
+            newHours = newHours + 24;
+        }
+        let newMinutes = interaction.options.getNumber('minute');
         let newDay = interaction.options.getNumber('day');
         let newTitle = interaction.options.getString('title');
         if (newHours < 0) {

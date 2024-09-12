@@ -67,6 +67,8 @@
     "streamer_added": "Streamer ajouté ! Il apparaitra dans moins d'une minutes.",
     "streamers_title": "Streamers",
     "active": "Actif",
-    "inactive": "Inactif"
+    "inactive": "Inactif",
+    "no_streamer": "Pas de streamer",
+    "streamer_removed": "Streamer supprimé !"
 }
   
