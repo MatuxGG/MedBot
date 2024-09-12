@@ -21,7 +21,7 @@ module.exports = {
                 interaction.reply({ content: await trans(guildId, "no_stream_board"), ephemeral: true });
             } else {
                 const members = interaction.guild.members.cache.map(member => ({
-                    label: member.user.username,
+                    label: member.user.displayName,
                     value: member.user.id
                 }));
 
