@@ -224,7 +224,7 @@ module.exports = {
                                 let streamUrl = isStreaming ? isStreaming.url : '';
                                 desc += '- <@' + streamLine.displayName + '>: ' + (isStreaming ? actif + ' (<' + streamUrl + '>)' : inactif) + '\n';
                             } else {
-                                desc += '- <@' + streamLine.userId + '>: '+inactif+'\n';
+                                desc += '- <@' + streamLine.displayName + '>: '+inactif+'\n';
                             }
                         });
 

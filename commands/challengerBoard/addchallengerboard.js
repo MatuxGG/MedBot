@@ -1,7 +1,7 @@
 const { EmbedBuilder, ApplicationCommandType, ApplicationCommandOptionType, StringSelectMenuBuilder, ChannelSelectMenuBuilder} = require("discord.js");
 const { trans } = require('../../utils/Translator.js');
 const {getLeaderboardData} = require("../../utils/challenger/leaderboardUtils");
-const { ChallengerBoard } = require("../../models/index");
+const { ChallengerBoard } = require("../../models");
 const { EMOJIS } = require('../../config');
 
 module.exports = {

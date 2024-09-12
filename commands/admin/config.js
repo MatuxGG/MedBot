@@ -20,6 +20,8 @@ module.exports = {
         description += '- Challenger roles: ' + (guild.challengerSetRoles ? 'enabled' : 'disabled') + '\n';
         let channel = channels.get(guild.logChannel);
         description += '- Log channel: ' + (channel ? '<#' + guild.logChannel + '>' : 'none') + '\n';
+        // Link to members count channel (vocal)
+        description += '- Members count channel: ' + (guild.membersCountChannel ? '<#' + guild.membersCountChannel + '>' : 'none') + '\n';
 
         // Get all channels to clean
         description += '\n🧹 __**Channels to clean**__\n\n';
