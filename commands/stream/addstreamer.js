@@ -14,6 +14,7 @@ module.exports = {
     runSlash: async (client, interaction) => {
         const guildId = interaction.guild.id;
         let channelId = interaction.channel.id;
+        await interaction.guild.members.fetch();
 
         StreamBoard.countDocuments({guildId: guildId, channelId: channelId}, async function (err, count){
             const guildId = interaction.guild.id;
