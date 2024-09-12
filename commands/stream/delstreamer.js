@@ -11,29 +11,41 @@ module.exports = {
         fr: 'Supprime un streamer au panel de ce salon',
     },
     permissions: ['MANAGE_MESSAGES'],
+    options: [
+        {
+            name: 'streamer',
+            nameLocalizations: {
+                fr: 'streamer',
+            },
+            description: 'Name of the streamer to remove',
+            descriptionLocalizations: {
+                fr: 'Nom du streamer à supprimer',
+            },
+            type: ApplicationCommandOptionType.String,
+            required: true,
+        },
+    ],
     runSlash: async (client, interaction) => {
+        let selectedStreamer = interaction.options.getString('streamer');
+        let selectedStreamerId = selectedStreamer.replace("<@", "").replace(">", "");
+        let user = await client.users.fetch(selectedStreamerId);
+        if (!user) {
+            interaction.reply({ content: await trans(guildId, "no_streamer"), ephemeral: true });
+            return;
+        }
         const guildId = interaction.guild.id;
         let channelId = interaction.channel.id;
 
-        let streamers = await StreamLine.find({guildId: guildId, channelId: channelId});
+        let streamer = await StreamLine.findOne({guildId: guildId, channelId: channelId, userId: selectedStreamerId});
 
-        if (streamers.length <= 0) {
+        if (streamer === null) {
             interaction.reply({ content: await trans(guildId, "no_streamer"), ephemeral: true });
         } else {
-            const members = streamers.map(streamer => ({
-                label: client.users.cache.get(streamer.userId).username,
-                value: streamer.userId
-            }));
+            StreamLine.findOneAndRemove({guildId: guildId, channelId: channelId, userId: selectedStreamerId}, async function (err, count) {
+                const answer = await trans(guildId, "streamer_removed");
+                interaction.reply({ content: answer, ephemeral: true });
 
-            const userSelectMenu = new StringSelectMenuBuilder()
-                .setCustomId('delStreamer')
-                .addOptions(members);
-
-            const actionRow = new ActionRowBuilder()
-                .addComponents(userSelectMenu);
-
-            await interaction.reply({ content: await trans(guildId, 'streamer_select'), components: [actionRow], ephemeral: true });
-
+            });
         }
     }
 }

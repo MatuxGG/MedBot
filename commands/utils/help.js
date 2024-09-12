@@ -58,8 +58,8 @@ module.exports = {
         description += "\n🔴 **__Stream boards module:__**\n\n";
         description += "*This module allows to display stream boards in a channel, with featured streamers.*\n\n";
         description += "- /addstreamboard: Add a new stream board in the current channel.\n";
-        description += "- /addstreamer: Add a new streamer to the stream board in the current channel. You have to choose an user from the server.\n";
-        description += "- /delstreamer: Remove a streamer from the stream board in the current channel. You have to choose one of the available streamers.\n";
+        description += "- /addstreamer **@Streamer**: Add a new **@Streamer** to the stream board in the current channel. You have to choose an user from the server.\n";
+        description += "- /delstreamer **@Streamer**: Remove a **@Streamer** from the stream board in the current channel. You have to choose one of the available streamers.\n";
 
         // Ticketing boards module
         description += "\n🎫 **__Ticketing boards module:__**\n\n";
