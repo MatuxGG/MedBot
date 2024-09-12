@@ -19,16 +19,16 @@ module.exports = {
             if(count<=0){
                 interaction.reply({ content: await trans(guildId, "no_stream_board"), ephemeral: true });
             } else {
-                // Fetch tous les membres du serveur
-                const membersFetched = await interaction.guild.members.fetch();
+                await interaction.guild.members.fetch();
 
-                // Filtrer et mapper les membres valides
-                const members = membersFetched
-                    .filter(member => member.user && member.user.username && member.user.id)
-                    .map(member => ({
-                        label: member.user.displayName,
+                const members = interaction.guild.members.cache
+                    .filter(member => !member.user.bot)
+                    .map(member => {
+                    return {
+                        label: member.user.username,
                         value: member.user.id
-                    }));
+                    }
+                });
 
                 const userSelectMenu = new StringSelectMenuBuilder()
                     .setCustomId('selectStreamer')
