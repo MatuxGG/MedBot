@@ -21,10 +21,12 @@ module.exports = {
             if(count<=0){
                 interaction.reply({ content: await trans(guildId, "no_stream_board"), ephemeral: true });
             } else {
-                const members = interaction.guild.members.cache.map(member => ({
-                    label: member.user.displayName,
-                    value: member.user.id
-                }));
+                const members = interaction.guild.members.cache
+                    .filter(member => member.user && member.user.displayName && member.user.id) // Filtre les membres invalides
+                    .map(member => ({
+                        label: member.user.displayName,
+                        value: member.user.id
+                    }));
 
                 const userSelectMenu = new StringSelectMenuBuilder()
                     .setCustomId('selectStreamer')
