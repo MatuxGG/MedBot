@@ -14,30 +14,30 @@ module.exports = {
     runSlash: async (client, interaction) => {
         const guildId = interaction.guild.id;
         let channelId = interaction.channel.id;
-        await interaction.guild.members.fetch();
+        interaction.guild.members.fetch().then(async (members) => {
+            StreamBoard.countDocuments({guildId: guildId, channelId: channelId}, async function (err, count){
+                const guildId = interaction.guild.id;
+                if(count<=0){
+                    interaction.reply({ content: await trans(guildId, "no_stream_board"), ephemeral: true });
+                } else {
+                    const members = interaction.guild.members.cache
+                        .filter(member => member.user && member.user.displayName && member.user.id) // Filtre les membres invalides
+                        .map(member => ({
+                            label: member.user.displayName,
+                            value: member.user.id
+                        }));
 
-        StreamBoard.countDocuments({guildId: guildId, channelId: channelId}, async function (err, count){
-            const guildId = interaction.guild.id;
-            if(count<=0){
-                interaction.reply({ content: await trans(guildId, "no_stream_board"), ephemeral: true });
-            } else {
-                const members = interaction.guild.members.cache
-                    .filter(member => member.user && member.user.displayName && member.user.id) // Filtre les membres invalides
-                    .map(member => ({
-                        label: member.user.displayName,
-                        value: member.user.id
-                    }));
+                    const userSelectMenu = new StringSelectMenuBuilder()
+                        .setCustomId('selectStreamer')
+                        .addOptions(members);
 
-                const userSelectMenu = new StringSelectMenuBuilder()
-                    .setCustomId('selectStreamer')
-                    .addOptions(members);
+                    const actionRow = new ActionRowBuilder()
+                        .addComponents(userSelectMenu);
 
-                const actionRow = new ActionRowBuilder()
-                    .addComponents(userSelectMenu);
+                    await interaction.reply({ content: await trans(guildId, 'streamer_select'), components: [actionRow], ephemeral: true });
 
-                await interaction.reply({ content: await trans(guildId, 'streamer_select'), components: [actionRow], ephemeral: true });
-
-            }
+                }
+            });
         });
     }
 }
