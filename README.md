@@ -1,3 +1,17 @@
+<p align="center">
+  <img src="https://img.shields.io/badge/MedBot-v1.0.0-blue" alt="MedBot Version">
+  &nbsp;&nbsp;
+  <img src="https://img.shields.io/badge/DiscordJS-v14-blue" alt="DiscordJS Version">
+  <img src="https://img.shields.io/badge/NodeJS-%3E%3D16.x-brightgreen" alt="NodeJS Version">
+  &nbsp;&nbsp;
+  <img src="https://img.shields.io/badge/MedBot%20license-MIT-green" alt="MedBot License">
+  &nbsp;&nbsp;
+  <a href="https://goodloss.fr/discord">
+    <img src="https://img.shields.io/badge/Good%20Loss%20Discord%20Server-Join-7289DA?logo=discord&logoColor=white" alt="Good Loss Discord Server">
+  </a>
+</p>
+
+
 # MedBot
 
 Good Loss official multipurpose bot.
