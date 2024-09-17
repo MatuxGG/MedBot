@@ -12,7 +12,7 @@
     <img src="https://img.shields.io/badge/DiscordJS-v14-blue" alt="DiscordJS Version">
   </a>
   <a href="https://nodejs.org/">
-    <img src="https://img.shields.io/badge/NodeJS-%3E%3D16.x-brightgreen" alt="NodeJS Version">
+    <img src="https://img.shields.io/badge/NodeJS-%3E%3D20.x-brightgreen" alt="NodeJS Version">
   </a>
   <a href="https://github.com/MatuxGG/MedBot/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/MatuxGG/MedBot" alt="MedBot License">
