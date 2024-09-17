@@ -4,7 +4,7 @@ const { ActionRowBuilder, Events, ModalBuilder, TextInputBuilder, TextInputStyle
 const {getUri} = require("axios");
 
 module.exports = {
-    name: 'addboard',
+    name: 'addticketboard',
     description: 'Add a new ticket board',
     descriptionLocalizations: {
         fr: 'Ajoute un nouveau panel à tickets',

@@ -4,7 +4,7 @@ const {Guild} = require("../../models");
 
 module.exports = {
     name: 'help',
-    description: 'Help command (English only)',
+    description: 'Help command',
     descriptionLocalizations: {
         fr: 'Commande aide',
     },
@@ -80,7 +80,7 @@ module.exports = {
                 // Module des panneaux de tickets
                 description += "\n🎫 **__Module des panneaux de tickets :__**\n\n";
                 description += "*Ce module permet de créer des panneaux de tickets dans le serveur.*\n\n";
-                description += "- /addboard: Ajoutez un nouveau panneau de tickets dans le salon actuel. Vous devez choisir un rôle qui pourra gérer les tickets et diverses informations pour que le module fonctionne.\n";
+                description += "- /addticketboard: Ajoutez un nouveau panneau de tickets dans le salon actuel. Vous devez choisir un rôle qui pourra gérer les tickets et diverses informations pour que le module fonctionne.\n";
                 description += "- /settranscriptchannel: Définissez le salon où les transcriptions des tickets seront envoyées.\n";
 
                 // Module de calendrier hebdomadaire
@@ -89,8 +89,9 @@ module.exports = {
                 description += "- /addwc **FuseauHoraire** **Heure** **Minute** **Message**: Ajoutez un calendrier hebdomadaire dans le salon actuel, envoyé chaque semaine à l'heure sélectionnée (**Heure:Minute** dans **FuseauHoraire**). Vous pouvez optionnellement ajouter un **Message** au calendrier.\n";
                 description += "- /delwc: Supprimez le calendrier hebdomadaire dans le salon actuel.\n";
 
-                // Diverses commandes
-                description += "\n🎉 **__Diverses commandes :__**\n\n";
+                // Commandes publiques
+                description += "\n🎉 **__Commandes publiques :__**\n\n";
+
                 description += "- /help: Affiche ce message d'aide.\n";
                 description += "- /ping: Affiche la latence du bot.\n";
                 description += "- /poll **Titre** **Réactions**: Créez un sondage dans le salon actuel avec un **Titre** et un ensemble de **Réactions**.\n";
@@ -155,7 +156,7 @@ module.exports = {
                 // Ticketing boards module
                 description += "\n🎫 **__Ticketing boards module:__**\n\n";
                 description += "*This module allows to create ticketing boards in the server.*\n\n";
-                description += "- /addboard: Add a new ticket board in the current channel. You have to choose a role that will be able to manage tickets and various information for the module to work.\n";
+                description += "- /addticketboard: Add a new ticket board in the current channel. You have to choose a role that will be able to manage tickets and various information for the module to work.\n";
                 description += "- /settranscriptchannel: Set the channel where the ticket transcripts will be sent.\n";
 
                 // Weekly calendar module
@@ -164,8 +165,9 @@ module.exports = {
                 description += "- /addwc **Timezone** **Hour** **Minute** **Message**: Add a weekly calendar in the current channel, sent every week at the selected time (**Hour:Minute** in **Timezone**). You can optionnally add a **Message** to the calendar.\n";
                 description += "- /delwc: Remove the weekly calendar in the current channel.\n";
 
-                // Various commands
-                description += "\n🎉 **__Various commands:__**\n\n";
+                // Public commands
+                description += "\n🎉 **__Public commands:__**\n\n";
+
                 description += "- /help: Display this help message.\n";
                 description += "- /ping: Display the bot latency.\n";
                 description += "- /poll **Title** **Reactions**: Create a poll in the current channel with a **Title** and a set of **Reactions**.\n";
