@@ -254,10 +254,15 @@ module.exports = {
         if (process.env.ENV === "PROD") {
             await client.application.commands.set(client.commands.map(command => command));
             console.log('Medbot started');
-        } else {
+        } else if (process.env.ENV === "DEV") {
             const devGuild = await client.guilds.cache.get(process.env.DEV_GUILD);
             await devGuild.commands.set(client.commands.map(command => command));
             console.log('Medbeta started');
+        } else {
+            const devGuild = await client.guilds.cache.get(process.env.DEV_GUILD);
+            await devGuild.commands.set(client.commands.map(command => command));
+            console.log('Test SUCCESS');
+            process.exit();
         }
         
     }
