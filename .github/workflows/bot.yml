@@ -54,9 +54,9 @@ jobs:
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ubuntu@goodloss.fr << 'EOF'
             cd /home/ubuntu/apps/MedBot
             git pull origin master
-            ./restartBot
+            ./restartBot.sh
           
             cd /home/ubuntu/apps/OrianaBot
             git pull origin master
-            ./restartBot
+            ./restartBot.sh
           EOF
