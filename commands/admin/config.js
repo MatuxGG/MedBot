@@ -1,6 +1,7 @@
 const { EmbedBuilder, ApplicationCommandType, ApplicationCommandOptionType } = require("discord.js");
 const {StreamBoard, StreamLine, Guild, Board, Ticket, ChanToClean, WeekCalendar, ChallengerBoard, ChallengerRank} = require("../../models");
 const { EMOJIS } = require('../../config');
+const {trans} = require("../../utils/Translator");
 
 module.exports = {
     name: 'config',
@@ -10,54 +11,60 @@ module.exports = {
         const guildId = interaction.guild.id;
         let channels = interaction.guild.channels.cache;
 
-        let description =  '';
-
-        // Get all global info
-        description += '🛠️ __**Global**__\n\n';
         let guild = await Guild.findOne({id: guildId});
-
-        description += '- Language: ' + guild.lg + '\n';
-        description += '- Challenger roles: ' + (guild.challengerSetRoles ? 'enabled' : 'disabled') + '\n';
-        let channel = channels.get(guild.logChannel);
-        description += '- Log channel: ' + (channel ? '<#' + guild.logChannel + '>' : 'none') + '\n';
-        // Link to members count channel (vocal)
-        description += '- Members count channel: ' + (guild.membersCountChannel ? '<#' + guild.membersCountChannel + '>' : 'none') + '\n';
-
-        // Get all channels to clean
-        description += '\n🧹 __**Channels to clean**__\n\n';
-        let ctc = await ChanToClean.find({guildId: guildId})
-
-        for (let chan of ctc) {
-            description += '- <#' + chan.id + '> - '+chan.hours + ':' + chan.minutes +' UTC\n';
+        if (!guild) {
+            console.log("Config error: No guild");
+            return;
         }
 
-        // Get all week calendars
-        description += '\n📅 __**Weekly calendars**__\n\n';
-        let calendars = await WeekCalendar.find({guildId: guildId})
+        let description =  '';
+
+        // Récupérer toutes les informations globales
+        description += '🛠️ __**' + await trans(guildId, 'Global') + '**__\n\n';
+
+        description += '- ' + await trans(guildId, 'Language') + ' : ' + guild.lg + '\n';
+        description += '- ' + await trans(guildId, 'Challenger roles') + ' : ' + (guild.challengerSetRoles ? await trans(guildId, 'enabled') : await trans(guildId, 'disabled')) + '\n';
+        let channel = channels.get(guild.logChannel);
+        description += '- ' + await trans(guildId, 'Log channel') + ' : ' + (channel ? '<#' + guild.logChannel + '>' : await trans(guildId, 'none')) + '\n';
+
+        // Lien vers le salon de compte des membres (vocal)
+        description += '- ' + await trans(guildId, 'Members count channel') + ' : ' + (guild.membersCountChannel ? '<#' + guild.membersCountChannel + '>' : await trans(guildId, 'none')) + '\n';
+
+        // Récupérer tous les salons à nettoyer
+        description += '\n🧹 __**' + await trans(guildId, 'Channels to clean') + '**__\n\n';
+        let ctc = await ChanToClean.find({guildId: guildId});
+
+        for (let chan of ctc) {
+            description += '- <#' + chan.id + '> - ' + chan.hours + ':' + chan.minutes + ' UTC\n';
+        }
+
+        // Récupérer tous les calendriers hebdomadaires
+        description += '\n📅 __**' + await trans(guildId, 'Weekly calendars') + '**__\n\n';
+        let calendars = await WeekCalendar.find({guildId: guildId});
 
         let i = 0;
         for (let calendar of calendars) {
-            description += 'Calendar #' + i + '\n';
-            description += '- Time: ' + calendar.hours + ':' + calendar.minutes + ' UTC\n';
-            let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            description += await trans(guildId, 'Calendar') + ' #' + i + '\n';
+            description += '- ' + await trans(guildId, 'Time') + ' : ' + calendar.hours + ':' + calendar.minutes + ' UTC\n';
+            let days = [await trans(guildId, 'Sunday'), await trans(guildId, 'Monday'), await trans(guildId, 'Tuesday'), await trans(guildId, 'Wednesday'), await trans(guildId, 'Thursday'), await trans(guildId, 'Friday'), await trans(guildId, 'Saturday')];
             let dayStr = days[calendar.day];
-            description += '- Day: ' + dayStr + '\n';
-            description += '- Custom title: ' + (calendar.title ? calendar.title : 'none' ) + '\n';
+            description += '- ' + await trans(guildId, 'Day') + ' : ' + dayStr + '\n';
+            description += '- ' + await trans(guildId, 'Custom title') + ' : ' + (calendar.title ? calendar.title : await trans(guildId, 'none')) + '\n';
             i++;
             description += '\n';
         }
         if (calendars.length > 0)
             description = description.slice(0, -1);
 
-        // Get all ticket boards
-        description += '\n🎫 __**Ticket boards**__\n\n';
-        let ticketBoards = await Board.find({guildId: guildId})
+        // Récupérer tous les panneaux de tickets
+        description += '\n🎫 __**' + await trans(guildId, 'Ticket boards') + '**__\n\n';
+        let ticketBoards = await Board.find({guildId: guildId});
 
         for (let board of ticketBoards) {
-            description += 'Tickets for <#' + board.id + '>\n';
-            description += `- Title: ${board.ticketTitle}\n`;
-            description += `- Content: ${board.ticketContent}\n`;
-            description += `- Role: ${board.roleId ? '<@&' + board.roleId + '>' : 'none'}\n`;
+            description += await trans(guildId, 'Tickets for') + ' <#' + board.id + '>\n';
+            description += `- ` + await trans(guildId, 'Title') + `: ${board.ticketTitle}\n`;
+            description += `- ` + await trans(guildId, 'Content') + `: ${board.ticketContent}\n`;
+            description += `- ` + await trans(guildId, 'Role') + `: ${board.roleId ? '<@&' + board.roleId + '>' : await trans(guildId, 'none')}\n`;
 
             const tickets = await Ticket.find({ guildId: guildId, boardId: board.id });
 
@@ -70,19 +77,19 @@ module.exports = {
                     close++;
                 }
             }
-            description += `- Opened: ${open}\n`;
-            description += `- Closed: ${close}\n`;
+            description += `- ` + await trans(guildId, 'Opened') + `: ${open}\n`;
+            description += `- ` + await trans(guildId, 'Closed') + `: ${close}\n`;
             description += '\n';
         }
         if (ticketBoards.length > 0)
             description = description.slice(0, -1);
 
-        // Get all stream boards
-        description += '\n🔴 __**Streamer boards**__\n\n';
-        let boards = await StreamBoard.find({guildId: guildId})
+        // Récupérer tous les panneaux de streamers
+        description += '\n🔴 __**' + await trans(guildId, 'Streamer boards') + '**__\n\n';
+        let boards = await StreamBoard.find({guildId: guildId});
 
         for (let board of boards) {
-            description += 'Streamers for ' + (board.channelId ? ('<#' + board.channelId + '>') : 'unknown channel') + '\n';
+            description += await trans(guildId, 'Streamers for') + ' ' + (board.channelId ? ('<#' + board.channelId + '>') : await trans(guildId, 'unknown channel')) + '\n';
 
             const streamers = await StreamLine.find({ guildId: guildId, channelId: board.channelId });
 
@@ -94,22 +101,23 @@ module.exports = {
         if (boards.length > 0)
             description = description.slice(0, -1);
 
-        // Get all challenger boards
-        description += '\n🏆 __**Challenger boards**__\n\n';
-        let challengerBoards = await ChallengerBoard.find({guildId: guildId})
+        // Récupérer tous les panneaux Challenger
+        description += '\n🏆 __**' + await trans(guildId, 'Challenger boards') + '**__\n\n';
+        let challengerBoards = await ChallengerBoard.find({guildId: guildId});
 
         for (let board of challengerBoards) {
-            description += '- Board in <#' + board.channelId + '>\n';
+            description += '- ' + await trans(guildId, 'Board in') + ' <#' + board.channelId + '>\n';
         }
 
-        // Get all challenger ranks
-        description += '\n🏆 __**Challenger ranks**__\n\n';
-        let ranks = await ChallengerRank.find({guildId: guildId})
+        // Récupérer tous les rangs Challenger
+        description += '\n🏆 __**' + await trans(guildId, 'Challenger ranks') + '**__\n\n';
+        let ranks = await ChallengerRank.find({guildId: guildId});
 
         for (let rank of ranks) {
             let role = EMOJIS[rank.id].split('_')[1].split(':')[0];
-            description += '- ' + role + ': <@&' + rank.roleId + '>\n';
+            description += '- ' + role + ' : <@&' + rank.roleId + '>\n';
         }
+
 
         const embed = new EmbedBuilder()
             .setTitle('Config')
