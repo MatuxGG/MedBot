@@ -259,7 +259,6 @@ module.exports = {
             await devGuild.commands.set(client.commands.map(command => command));
             console.log('Medbeta started');
         } else {
-            abcd
             const devGuild = await client.guilds.cache.get(process.env.DEV_GUILD);
             await devGuild.commands.set(client.commands.map(command => command));
             console.log('Test SUCCESS');
