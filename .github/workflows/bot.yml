@@ -42,10 +42,10 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Update and restart bots on OVH
+      - name: Update and restart bots on server
         if: success()
         run: |
-          ssh -o StrictHostKeyChecking=no user@server_ip << 'EOF'
+          ssh -o StrictHostKeyChecking=no ubuntu@goodloss.fr << 'EOF'
             # Update MedBot and restart it
             cd /home/ubuntu/apps/MedBot
             git pull origin master
