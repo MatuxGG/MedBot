@@ -120,7 +120,7 @@ module.exports = {
 
 
         const embed = new EmbedBuilder()
-            .setTitle('Config')
+            .setTitle(await trans(guild, 'Server configuration'))
             .setDescription(description);
 
         interaction.reply({ embeds: [embed], ephemeral: true})
