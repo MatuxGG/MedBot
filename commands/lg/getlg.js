@@ -42,7 +42,7 @@ module.exports = {
                         {text : interaction.user.username, iconURL : interaction.user.displayAvatarURL()}
                     )
     
-                interaction.reply({ embeds: [embed] })
+                interaction.reply({ embeds: [embed], ephemeral: true });
             } else {
                 console.log("Language error: No language");
                 return;

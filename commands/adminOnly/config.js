@@ -6,7 +6,10 @@ const {trans} = require("../../utils/Translator");
 module.exports = {
     name: 'config',
     permissions: ['ADMINISTRATOR'],
-    description: 'Get the configuration of the bot (english only)',
+    description: 'Get the configuration of the bot',
+    descriptionLocalizations: {
+        fr: 'Affiche la configuration du bot'
+    },
     runSlash: async (client, interaction) => {
         const guildId = interaction.guild.id;
         let channels = interaction.guild.channels.cache;

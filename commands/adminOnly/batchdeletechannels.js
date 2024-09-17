@@ -4,19 +4,34 @@ module.exports = {
     name: 'batchdeletechannels',
     permissions: ['ADMINISTRATOR'],
     description: 'Delete ALL channels and categories',
+    descriptionLocalizations: {
+        fr: 'Supprimer TOUS les salons et catégories'
+    },
     options: [
         {
             name: 'confirm',
+            nameLocalizations: {
+                fr: 'confirmer'
+            },
             description: 'Confirm that you wanna do this',
+            descriptionLocalizations: {
+                fr: 'Confirmer que vous voulez faire ça'
+            },
             type: ApplicationCommandOptionType.String,
             required: 'true',
             choices: [
                 {
                     name: 'Cancel',
+                    nameLocalizations: {
+                        fr: 'Annuler'
+                    },
                     value: 'no'
                 },
                 {
                     name: 'Confirm',
+                    nameLocalizations: {
+                        fr: 'Confirmer'
+                    },
                     value: 'yes'
                 },
             ]
