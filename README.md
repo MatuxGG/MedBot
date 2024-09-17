@@ -8,6 +8,9 @@
   <a href="https://goodloss.fr/discord">
     <img src="https://img.shields.io/badge/Good%20Loss%20Discord%20Server-Join-7289DA?logo=discord&logoColor=white" alt="Good Loss Discord Server">
   </a>
+  <a href="https://github.com/MatuxGG/MedBot/actions/workflows/bot.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/MatuxGG/MedBot/bot.yml?label=Build" alt="Discord.js Bot CI Status">
+  </a>
   <a href="https://discord.js.org/">
     <img src="https://img.shields.io/badge/DiscordJS-v14-blue" alt="DiscordJS Version">
   </a>
