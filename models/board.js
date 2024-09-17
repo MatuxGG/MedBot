@@ -1,3 +1,5 @@
+// ticketBoard
+
 const mongoose = require('mongoose');
 
 const guildSchema = mongoose.Schema ({
