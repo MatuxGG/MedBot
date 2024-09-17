@@ -27,7 +27,7 @@ jobs:
           touch .env
           echo ENV="TEST" >> .env
           echo DEV_TOKEN=${{ secrets.DEV_TOKEN }} >> .env
-          echo DEV_TOKEN=BOT_DEV_ID="796428644783489024" >> .env
+          echo DEV_TOKEN="796428644783489024" >> .env
           echo DATABASE_URI="mongodb://${{ secrets.DB_USER }}:${{ secrets.DB_PASSWORD }}@goodloss.fr:27017/beta" >> .env
           echo DEV_GUILD="948895533353824257" >> .env
           echo LEADERBOARD_API_TOKEN=${{ secrets.LEADERBOARD_API_TOKEN }} >> .env
