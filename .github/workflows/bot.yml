@@ -51,7 +51,7 @@ jobs:
       - name: Update and restart bots on server
         if: success()
         run: |
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ubuntu@goodloss.fr << 'EOF'
             cd /home/ubuntu/apps/MedBot
             git pull origin master
             ./restartBot
