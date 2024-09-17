@@ -14,24 +14,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v2.0
+        with:
+          envkey_DEV_TOKEN: ${{ secrets.DEV_TOKEN }}
+          envkey_DEV_TOKEN_2: "796428644783489024"
+          envkey_DATABASE_URI: "mongodb://${{ secrets.DB_USER }}:${{ secrets.DB_PASSWORD }}@goodloss.fr:27017/beta"
+          envkey_DEV_GUILD: "948895533353824257"
+          envkey_LEADERBOARD_API_TOKEN: ${{ secrets.LEADERBOARD_API_TOKEN }}
+          envkey_HOST_URL: "goodloss.fr"
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20.17.0'
+          node-version: '20'
 
       - name: Install dependencies
         run: npm install
-
-      - name: Create .env file
-        run: |
-          touch .env
-          echo ENV="TEST" >> .env
-          echo DEV_TOKEN=${{ secrets.DEV_TOKEN }} >> .env
-          echo DEV_TOKEN="796428644783489024" >> .env
-          echo DATABASE_URI="mongodb://${{ secrets.DB_USER }}:${{ secrets.DB_PASSWORD }}@goodloss.fr:27017/beta" >> .env
-          echo DEV_GUILD="948895533353824257" >> .env
-          echo LEADERBOARD_API_TOKEN=${{ secrets.LEADERBOARD_API_TOKEN }} >> .env
-          echo HOST_URL="goodloss.fr" >> .env
 
       - name: Run bot
         run: node medbot.js
