@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require("discord.js");
 const { trans } = require('../../utils/Translator.js');
-const { VERSION } = require('../../config');
+const { version } = require('../../package.json');
 
 module.exports = {
     name: 'version',
@@ -10,8 +10,7 @@ module.exports = {
     },
     permissions: [],
     runSlash: async (client, interaction) => {
-        
-        const version = VERSION;
+
         const guildId = interaction.channel.guildId;
 
         const versionTrans = await trans(guildId, 'version');

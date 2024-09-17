@@ -3,7 +3,7 @@ const { EmbedBuilder, ActivityType } = require("discord.js");
 const dotenv = require('dotenv');
 dotenv.config()
 const { trans } = require('../../utils/Translator.js');
-const { VERSION, EMOJIS} = require('../../config');
+const { EMOJIS} = require('../../config');
 const { Guild } = require('../../models/index')
 const {getPlayerData, getLeaderboardData} = require("../../utils/challenger/leaderboardUtils");
 const {ChallengerRank, ChallengerBoard, StreamBoard, StreamLine} = require("../../models");
