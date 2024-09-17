@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://goodloss.fr">
-    <img src="https://img.shields.io/github/package-json/v/MatuxGG/MedBot?label=MedBot%20Version" alt="MedBot Version">
+    <img src="https://img.shields.io/github/package-json/v/MatuxGG/MedBot?label=MedBot" alt="MedBot Version">
   </a>
   <a href="https://goodloss.fr/medbot/invite">
     <img src="https://img.shields.io/badge/Invite%20MedBot-Click%20Here-blueviolet?logo=discord&logoColor=white" alt="Invite MedBot">
