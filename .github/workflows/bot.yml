@@ -34,3 +34,4 @@ jobs:
 
       - name: Run bot
         run: node medbot.js
+        timeout-minutes: 10
