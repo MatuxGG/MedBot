@@ -35,3 +35,24 @@ jobs:
       - name: Run bot
         run: node medbot.js
         timeout-minutes: 1
+
+      - name: Deploy to server
+        if: success()
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Update and restart bots on OVH
+        if: success()
+        run: |
+          ssh -o StrictHostKeyChecking=no user@server_ip << 'EOF'
+            # Update MedBot and restart it
+            cd /home/ubuntu/apps/MedBot
+            git pull origin master
+            ./restartBot
+          
+            # Update OrianaBot and restart it
+            cd /home/ubuntu/apps/OrianaBot
+            git pull origin master
+            ./restartBot
+          EOF
