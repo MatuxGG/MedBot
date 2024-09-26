@@ -24,7 +24,7 @@
 
 # MedBot
 
-Good Loss official multipurpose bot.
+Open source multipurpose bot
 
 ## Installation
 
