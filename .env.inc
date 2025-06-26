@@ -8,3 +8,6 @@ DATABASE_URI=mongodb://login:password@localhost:27017/admin # mongodb database
 DEV_GUILD=dev_guild_id # Guild for dev mode
 LEADERBOARD_API_TOKEN=leaderboard_api_token # Good Loss API Token
 HOST_URL=host_url # goodloss.fr
+MONGO_ROOT_USERNAME=
+MONGO_ROOT_PASSWORD=
+MONGO_DATABASE=

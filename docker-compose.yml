@@ -22,9 +22,8 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
       MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
     volumes:
-      - ./volumes/db:/data/db
-    ports:
-      - "27017:27017"
+      - ./container/db:/data/db
+    # Pas de ports exposés - accès uniquement depuis les autres containers
     restart: unless-stopped
     networks:
       - medbot-network
