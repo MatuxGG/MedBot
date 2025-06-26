@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    container_name: discord-bot
+    env_file: .env
+    volumes:
+      - ./volumes/logs:/app/logs
+    depends_on:
+      - mongo
+    networks:
+      - botnet
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:7
+    container_name: discord-bot-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./volumes/db:/data/db         # <= dossier local monté comme DB Mongo
+    networks:
+      - botnet
+
+networks:
+  botnet:
