@@ -1,32 +1,34 @@
 version: '3.8'
 
 services:
-  bot:
+  medbot:
     build: .
-    container_name: discord-bot
-    env_file: .env
+    container_name: medbot-app
+    depends_on:
+      - mongodb
+    env_file:
+      - .env
     volumes:
       - ./volumes/logs:/app/logs
-    depends_on:
-      - mongo
+    restart: unless-stopped
     networks:
-      - botnet
-    restart: unless-stopped
+      - medbot-network
 
-  mongo:
-    image: mongo:7
-    container_name: discord-bot-mongo
-    restart: unless-stopped
+  mongodb:
+    image: mongo:7.0
+    container_name: medbot-mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
+    volumes:
+      - ./volumes/db:/data/db
     ports:
       - "27017:27017"
-    volumes:
-      - ./volumes/db:/data/db         # <= dossier local monté comme DB Mongo
+    restart: unless-stopped
     networks:
-      - botnet
+      - medbot-network
 
 networks:
-  botnet:
+  medbot-network:
     driver: bridge
-    ipam:
-      config:
-        - subnet: 172.28.0.0/16
