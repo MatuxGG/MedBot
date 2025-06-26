@@ -39,6 +39,20 @@ npm i
 
 - Update config.json file if needed
 
+## Docker
+
+To run the bot inside a Docker container:
+
+1. Create your `.env` file from `.env.inc` and fill in the variables.
+2. Build the image:
+   ```bash
+   docker build -t medbot .
+   ```
+3. Start the container:
+   ```bash
+   docker run --env-file .env medbot
+   ```
+
 ## Usage
 
 To get started, please invite medbot to your server by clicking [here](https://goodloss.fr/medbot/invite). \
