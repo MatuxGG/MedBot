@@ -42,6 +42,14 @@ process.on('warning', (...args) => { console.log(...args) });
 
 // MongoDB connect
 
+const {
+    MONGO_ROOT_USERNAME,
+    MONGO_ROOT_PASSWORD,
+    MONGO_DATABASE
+} = process.env;
+
+const uri = `mongodb://${MONGO_ROOT_USERNAME}:${encodeURIComponent(MONGO_ROOT_PASSWORD)}@mongodb:27017/${MONGO_DATABASE}?authSource=${MONGO_DATABASE}`;
+
 const options = {
     autoIndex: false, // Don't build indexes
     maxPoolSize: 10, // Maintain up to 10 socket connections
@@ -50,7 +58,7 @@ const options = {
     family: 4 // Use IPv4, skip trying IPv6
   };
 
-mongoose.connect(process.env.DATABASE_URI, options);
+mongoose.connect(uri, options);
 
 mongoose.connection.once('open', function() {
     console.log("Connected to Medbot database");
