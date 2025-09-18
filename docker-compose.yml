@@ -2,6 +2,8 @@ services:
   mongodb:
     image: mongo:7.0
     container_name: medbot-mongodb
+    ports:
+      - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
@@ -17,7 +19,7 @@ services:
     depends_on:
       - mongodb
     env_file:
-      - stack.env
+      - .env
     volumes:
       - ./volumes/logs:/app/logs
     restart: unless-stopped
