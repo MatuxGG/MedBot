@@ -17,7 +17,7 @@ services:
     depends_on:
       - mongodb
     env_file:
-      - .env
+      - stack.env
     volumes:
       - ./volumes/logs:/app/logs
     restart: unless-stopped
