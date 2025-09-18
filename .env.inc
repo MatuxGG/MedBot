@@ -1,5 +1,5 @@
-#ENV=PROD
 ENV=DEV
+ENV_NAME=medbot
 PROD_TOKEN=discord_prod_token # Medbot token
 DEV_TOKEN=discord_dev_token # MedBeta token
 BOT_PROD_ID=793905604631986197 # Medbot ID
@@ -7,6 +7,4 @@ BOT_DEV_ID=796428644783489024 # Medbeta ID
 DEV_GUILD=dev_guild_id # Guild for dev mode
 LEADERBOARD_API_TOKEN=leaderboard_api_token # Good Loss API Token
 HOST_URL=host_url # goodloss.fr
-MONGO_ROOT_USERNAME=
 MONGO_ROOT_PASSWORD=
-MONGO_DATABASE=

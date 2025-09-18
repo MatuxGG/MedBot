@@ -1,6 +1,16 @@
-version: '3.8'
-
 services:
+  mongodb:
+    image: mongo:7.0
+    container_name: medbot-mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+    volumes:
+      - ./volumes/mongo:/data/db
+    # Pas de ports exposés - accès uniquement depuis les autres containers
+    restart: unless-stopped
+    networks:
+      - medbot-network
   medbot:
     build: .
     container_name: medbot-app
@@ -13,24 +23,6 @@ services:
     restart: unless-stopped
     networks:
       - medbot-network
-
-  mongodb:
-    image: mongo:7.0
-    container_name: medbot-mongodb
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
-      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
-    volumes:
-      - medbot-mongo:/data/db
-    # Pas de ports exposés - accès uniquement depuis les autres containers
-    restart: unless-stopped
-    networks:
-      - medbot-network
-
 networks:
   medbot-network:
     driver: bridge
-
-volumes:
-    medbot-mongo:

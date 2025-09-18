@@ -42,13 +42,7 @@ process.on('warning', (...args) => { console.log(...args) });
 
 // MongoDB connect
 
-const {
-    MONGO_ROOT_USERNAME,
-    MONGO_ROOT_PASSWORD,
-    MONGO_DATABASE
-} = process.env;
-
-const uri = `mongodb://${MONGO_ROOT_USERNAME}:${encodeURIComponent(MONGO_ROOT_PASSWORD)}@mongodb:27017/${MONGO_DATABASE}?authSource=${MONGO_DATABASE}`;
+const uri = `mongodb://root:${process.env.MONGO_ROOT_PASSWORD}@mongodb:27017/admin?authSource=admin`;
 
 const options = {
     autoIndex: false, // Don't build indexes
@@ -65,7 +59,8 @@ mongoose.connection.once('open', function() {
 });
 
 mongoose.connection.on('error', function(err) {
-    console.log("Database connection error:", err);
+    console.log("Database connection error:",err);
+    process.exit(1);
 });
 
 loadTranslations('en');
