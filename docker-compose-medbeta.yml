@@ -15,7 +15,7 @@ services:
     build: .
     container_name: medbeta-app
     depends_on:
-      - medbeta
+      - mongodb
     env_file:
       - stack.env
     volumes:
