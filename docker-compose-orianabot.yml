@@ -1,0 +1,28 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: orianabot-mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+    volumes:
+      - ./volumes/mongo:/data/db
+    # Pas de ports exposés - accès uniquement depuis les autres containers
+    restart: unless-stopped
+    networks:
+      - orianabot-network
+  medbot:
+    build: .
+    container_name: orianabot-app
+    depends_on:
+      - mongodb
+    env_file:
+      - stack.env
+    volumes:
+      - ./volumes/logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - orianabot-network
+networks:
+  orianabot-network:
+    driver: bridge
