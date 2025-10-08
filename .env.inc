@@ -8,3 +8,5 @@ DEV_GUILD=dev_guild_id # Guild for dev mode
 LEADERBOARD_API_TOKEN=leaderboard_api_token # Good Loss API Token
 HOST_URL=host_url # goodloss.fr
 MONGO_ROOT_PASSWORD=
+BACKUP_USER=
+BACKUP_HOST=
