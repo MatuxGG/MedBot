@@ -14,7 +14,7 @@ COPY . .
 
 # Créer le dossier logs si nécessaire
 RUN mkdir -p /app/logs && \
-    mkdir -p ./volumes/mongo
+    mkdir -p ./data/mongo
 
 # Lancer le serveur avec redirection vers logs
 CMD ["sh", "-c", "node medbot.js >> /app/logs/logs.txt 2>&1"]
