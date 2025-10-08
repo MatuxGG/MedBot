@@ -37,10 +37,11 @@ fi
 
 # Create tar.gz archive
 echo "Creating archive ${ARCHIVE_NAME}..."
-tar -czf "${ARCHIVE_NAME}" data
+tar -czf "${ARCHIVE_NAME}" data 2>&1 | grep -v "file changed as we read it"
+EXIT_CODE=${PIPESTATUS[0]}
 
-# Verify archive creation
-if [ $? -ne 0 ]; then
+# Verify archive creation (ignore exit code 1 which indicates file changed warning)
+if [ $EXIT_CODE -ne 0 ] && [ $EXIT_CODE -ne 1 ]; then
     echo "Error during archive creation"
     exit 1
 fi
