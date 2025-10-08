@@ -1,7 +1,7 @@
 node_modules
 .env
 med.log
-volumes/mongo/*
-volumes/logs/*
-!volumes/mongo/.gitkeep
-!volumes/logs/.gitkeep
+data/mongo/*
+data/logs/*
+!data/mongo/.gitkeep
+!data/logs/.gitkeep
