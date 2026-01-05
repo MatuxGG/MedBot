@@ -8,9 +8,9 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
     volumes:
-      - ./data/mongo:/data/db
+      - /mnt/data/medbot/mongo:/data/db
     # Pas de ports exposés - accès uniquement depuis les autres containers
-    restart: unless-stopped
+    restart: always
     networks:
       - medbot-network
   medbot:
@@ -21,8 +21,8 @@ services:
     env_file:
       - .env
     volumes:
-      - ./data/logs:/app/logs
-    restart: unless-stopped
+      - /mnt/data/medbot/logs:/app/logs
+    restart: always
     networks:
       - medbot-network
 networks:
